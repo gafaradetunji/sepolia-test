@@ -116,12 +116,14 @@ export default function Home() {
         >
           {isGetLoading ? "Loading..." : "Get Message"}
         </button>
-        <div style={{ marginTop: "1rem" }}>
-          <h3>Current Message:</h3>
-          <p style={{ wordBreak: "break-word", background: "#f8f9fa", padding: "1rem", borderRadius: "4px", color: "green" }}>
-            {isLoading ? "Loading..." : message || "No message set."}
-          </p>
-        </div>
+        {message && (
+          <div style={{ marginTop: "1rem" }}>
+            <h3>Current Message:</h3>
+            <p style={{ wordBreak: "break-word", background: "#f8f9fa", padding: "1rem", borderRadius: "4px", color: "green" }}>
+              {isLoading ? "Loading..." : message || "No message set."}
+            </p>
+          </div>
+        )}
         {error && (
           <p style={{ color: "red", marginTop: "1rem", maxHeight: '400px', overflowY: 'auto' }}>
             Error: {error}
