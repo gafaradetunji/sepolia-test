@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ethers } from "ethers";
 import abi from "./abi.json";
 
-const contractAddress = "0x9D1eb059977D71E1A21BdebD1F700d4A39744A70";
+const contractAddress = process.env["NEXT_PUBLIC_CONTRACT_ADDRESS"];
 
 export default function Home() {
   const [text, setText] = useState("");
@@ -36,7 +36,8 @@ export default function Home() {
       await tx.wait();
       setError(null);
       alert("Message set successfully!");
-      await handleGet();
+      setText("");
+      // await handleGet();
     } catch (error) {
       setError(error.message || "An error occurred while setting the message.");
     } finally {
@@ -62,10 +63,6 @@ export default function Home() {
       setIsGetLoading(false);
     }
   };
-
-  useEffect(() => {
-    handleGet();
-  }, []);
 
   return (
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
